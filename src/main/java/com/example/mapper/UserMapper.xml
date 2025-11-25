@@ -9,4 +9,9 @@
 		VALUES (#{email},#{passwordHash},#{displayName},NOW());
 		
 	</insert>
+	
+	<select id="selectByEmail">
+		SELECT * FROM users
+		WHERE email = #{email}
+	</select>
 </mapper>

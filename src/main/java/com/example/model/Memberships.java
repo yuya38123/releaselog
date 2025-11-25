@@ -8,5 +8,6 @@ public class Memberships {
 	private int id;
 	private int userId;
 	private int orgId;
+	private MembershipRole role;
 
 }

@@ -9,5 +9,5 @@ public class Organizations {
 
 	private int id;
 	private String name;
-	private LocalDateTime createdATime;
+	private LocalDateTime createdAt;
 }
