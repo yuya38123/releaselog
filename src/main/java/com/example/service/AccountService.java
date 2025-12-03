@@ -6,8 +6,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.DTO.LoginRequest;
 import com.example.DTO.RegisterRequest;
 import com.example.exception.EmailAlreadyUsedException;
+import com.example.exception.InvalidCrendentialsException;
 import com.example.mapper.MembershipsMapper;
 import com.example.mapper.OrganizationMapper;
 import com.example.mapper.UserMapper;
@@ -59,6 +61,20 @@ public class AccountService {
 		}
 
 		return true;
+	}
+
+	public String login(LoginRequest lr) {
+		User user = userMapper.selectByEmail(lr.getEmail());
+
+		if (user == null) {
+			throw new InvalidCrendentialsException();
+		}
+
+		if (!passwordEncoder.matches(lr.getPasswordString(), user.getPasswordHash())) {
+			throw new InvalidCrendentialsException();
+		}
+
+		return user.getDisplayName();
 	}
 
 }

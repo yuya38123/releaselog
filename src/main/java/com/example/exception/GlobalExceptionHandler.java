@@ -12,5 +12,10 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<?> handleEmailAlreadyUsed(EmailAlreadyUsedException ex) {
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
 	}
+	
+	@ExceptionHandler(InvalidCrendentialsException.class)
+	public ResponseEntity<?> handleInvalidCredentialsException(InvalidCrendentialsException ex){
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+	}
 
 }
